@@ -10,6 +10,10 @@ axios.interceptors.response.use(
 );
 
 class UserService{
+        constructor(){
+            this.userId = null;
+        }
+
         async register(user){
         const response = await axios.post(
             `${process.env.REACT_APP_API_URL}users`,
@@ -17,8 +21,9 @@ class UserService{
                 username: user.username, password: user.password})
         );
         const token = response.data.token;
+        this.userId = response.data.userId;
         localStorage.setItem("token", token);
-        return response.data.userId;
+        return this.userId;
     }
 }
 
