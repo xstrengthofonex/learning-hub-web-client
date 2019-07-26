@@ -15,15 +15,15 @@ class UserService{
         }
 
         async register(user){
-        const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}users`,
-            JSON.stringify({email: user.email,
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}users`,
+                JSON.stringify({email: user.email,
                 username: user.username, password: user.password})
-        );
-        const token = response.data.token;
-        this.userId = response.data.userId;
-        localStorage.setItem("token", token);
-        return this.userId;
+            );
+            const token = response.data.token;
+            this.userId = response.data.userId;
+            localStorage.setItem("token", token);
+            return this.userId;
     }
 }
 
